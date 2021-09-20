@@ -12,17 +12,11 @@
 .header {
    background: url("../images/header__bg.jpg") center center/cover no-repeat;
    min-height: 100vh;
-   &__row {
+   &__menu {
       display: flex;
       justify-content: center;
       padding-top: 30px;
       @media (max-width: 767px) {
-         & {
-            background: #4d4959;
-            min-height: 100vh;
-            color: #fff;
-            padding-top: 50px;
-         }
          & .header__list {
             flex-direction: column;
             li:not(:last-child) {
@@ -43,8 +37,47 @@
          & .header__link-image {
             order: 1;
          }
+         .menu__body {
+            position: fixed;
+            z-index: 5;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            transform: translate(0, -200%);
+            background: rgba(77, 73, 89, 0.7);
+            min-height: 100vh;
+            color: #fff;
+            padding-top: 50px;
+            transition: transform 0.4s ease;
+         }
+         .menu__body.active {
+            transform: translate(0, 0);
+         }
       }
    }
+
+.icon-menu {
+   @media (max-width: 767px) {
+      display: block;
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      width: 30px;
+      height: 18px;
+      cursor: pointer;
+      z-index: 6;
+      span {transition: all 0.3s ease; top: 8px; left: 0; position: absolute; width: 100%; height: 2px; background: #000;
+         &:first-child {top: 0;}
+         &:last-child{top: auto; bottom: 0;}
+      }}
+      &.active {
+         .header__row {transform: translate(0);}
+         span {transform: scale(0); 
+            &:first-child{transform: rotate(-45deg); top: 8px;}
+            &:last-child{transform: rotate(45deg); bottom: 8px}
+      }}
+}
 
    &__list {
       display: flex;
@@ -103,7 +136,7 @@
 }
 .about {
    background: #f7f7f7;
-   padding: 115px 0px 140px 0px;
+   padding: 115px 0px 120px 0px;
    &__row {
       display: flex;
       flex-direction: column;
@@ -121,7 +154,8 @@
    }
 }
 .container {
-   max-width: 1050px;
+   max-width: 1130px;
+   padding: 0 15px;
    margin: 0 auto;
 }
 
@@ -155,7 +189,7 @@
    &__body {
       flex: 1 0 auto;
       text-align: center;
-      padding: 70px 70px 55px 70px;
+      padding: 40px 70px 25px 70px;
    }
 
    &__text:after {
